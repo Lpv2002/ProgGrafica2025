@@ -11,10 +11,10 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            GameWindow window = new GameWindow(800,600);
-            Class1 game = new Class1(window);
-
-            window.Run();
+            using (Game game = new Game())
+            {
+                game.Run(60.0); // Ejecutar el juego con un framerate objetivo de 60 FPS
+            }
         }
     }
 }

@@ -1,0 +1,94 @@
+{
+  "escenas": [
+    {
+      "Nombre": "Escena 1: Movimiento inicial",
+      "Acciones": [
+        {
+          "nombreObjeto": "AUTO",
+          "tiempoI": 0,
+          "tiempoF": 3000,
+          "tiempoSiguiente": 0,
+          "estado": true,
+          "accion": [0, 0, 1],
+          "parametros": [10.0, 0.0, 0.0]
+        },
+        {
+          "nombreObjeto": "AUTO",
+          "tiempoI": 3000,
+          "tiempoF": 6000,
+          "tiempoSiguiente": 3000,
+          "estado": true,
+          "accion": [0, 1, 0],
+          "parametros": ["y", 180.0]
+        }
+      ],
+      "TiempoDeDuracion": 6000
+    },
+    {
+      "Nombre": "Escena 2: Escalamiento y traslación vertical",
+      "Acciones": [
+        {
+          "nombreObjeto": "AUTO",
+          "tiempoI": 0,
+          "tiempoF": 2000,
+          "tiempoSiguiente": 0,
+          "estado": true,
+          "accion": [1, 0, 0],
+          "parametros": [2.0]
+        },
+        {
+          "nombreObjeto": "AUTO",
+          "tiempoI": 2000,
+          "tiempoF": 4000,
+          "tiempoSiguiente": 2000,
+          "estado": true,
+          "accion": [0, 0, 1],
+          "parametros": [0.0, 5.0, 0.0]
+        }
+      ],
+      "TiempoDeDuracion": 4000
+    },
+    {
+      "Nombre": "Escena 3: Rotación compleja",
+      "Acciones": [
+        {
+          "nombreObjeto": "AUTO",
+          "tiempoI": 0,
+          "tiempoF": 1500,
+          "tiempoSiguiente": 0,
+          "estado": true,
+          "accion": [0, 1, 0],
+          "parametros": ["x", 90.0]
+        },
+        {
+          "nombreObjeto": "AUTO",
+          "tiempoI": 1500,
+          "tiempoF": 3000,
+          "tiempoSiguiente": 1500,
+          "estado": true,
+          "accion": [0, 1, 0],
+          "parametros": ["y", 90.0]
+        },
+        {
+          "nombreObjeto": "AUTO",
+          "tiempoI": 3000,
+          "tiempoF": 4500,
+          "tiempoSiguiente": 3000,
+          "estado": true,
+          "accion": [0, 1, 0],
+          "parametros": ["z", 90.0]
+        },
+        {
+          "nombreObjeto": "AUTO",
+          "tiempoI": 4500,
+          "tiempoF": 6000,
+          "tiempoSiguiente": 4500,
+          "estado": true,
+          "accion": [0, 0, 1],
+          "parametros": [-10.0, -5.0, 5.0]
+        }
+      ],
+      "TiempoDeDuracion": 6000
+    }
+  ]
+}

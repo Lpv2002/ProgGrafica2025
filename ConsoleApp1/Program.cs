@@ -13,7 +13,7 @@ namespace ConsoleApp1
         {
             using (Game game = new Game())
             {
-                game.Run(60.0);
+                game.Run(30.0);
             }
         }
     }

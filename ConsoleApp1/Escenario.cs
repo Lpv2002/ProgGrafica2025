@@ -1,14 +1,16 @@
-﻿
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
-    internal class Escenario
+    public class Escenario
     {
         public Dictionary<string, Objeto> objetos;
         private float originX, originY, originZ;
+
+        // Variables para almacenar rotaciones del escenario
+        private Vertice RotacionGlobal;
 
         public Escenario(float originX, float originY, float originZ)
         {
@@ -16,15 +18,15 @@ namespace ConsoleApp1
             this.originY = originY;
             this.originZ = originZ;
             objetos = new Dictionary<string, Objeto>();
+            RotacionGlobal = new Vertice(0, 0, 0);
         }
-
 
         public void AgregarObjeto(string nombre, Objeto objeto)
         {
             objetos.Add(nombre, objeto);
         }
 
-        public Objeto get(string nombreobjeto)
+        public Objeto ObtenerObjeto(string nombreobjeto)
         {
             if (objetos.ContainsKey(nombreobjeto))
             {
@@ -32,7 +34,7 @@ namespace ConsoleApp1
             }
             else
             {
-                throw new Exception($"La parte {nombreobjeto} no existe en este objeto.");
+                throw new Exception($"El objeto {nombreobjeto} no existe en este escenario.");
             }
         }
 
@@ -43,6 +45,7 @@ namespace ConsoleApp1
                 objeto.Trasladar(x, y, z);
             }
         }
+
         public void Escalar(float n)
         {
             foreach (Objeto objeto in objetos.Values)
@@ -50,20 +53,47 @@ namespace ConsoleApp1
                 objeto.Escalar(n);
             }
         }
+
         public void Rotar(string eje, float angulo)
         {
+            if (eje == "x")
+                RotacionGlobal.X += angulo;
+            else if (eje == "y")
+                RotacionGlobal.Y += angulo;
+            else if (eje == "z")
+                RotacionGlobal.Z += angulo;
+
             foreach (Objeto objeto in objetos.Values)
             {
-                objeto.Rotar(eje, angulo);
+                objeto.RotarE(eje, angulo);
             }
         }
+
+        private void AplicarTransformacionesGlobales()
+        {
+            // Aplicar rotación global
+            GL.Rotate(RotacionGlobal.X, 1, 0, 0);
+            GL.Rotate(RotacionGlobal.Y, 0, 1, 0);
+            GL.Rotate(RotacionGlobal.Z, 0, 0, 1);
+
+            // Aplicar traslación al origen del escenario
+            GL.Translate(originX, originY, originZ);
+        }
+
         public void Dibujar()
         {
+            GL.PushMatrix();
+
+            // Aplicar transformaciones globales del escenario
+            AplicarTransformacionesGlobales();
+
+            // Dibujar todos los objetos
             foreach (Objeto objeto in objetos.Values)
             {
-                objeto.Trasladar(originX, originY, originZ);
                 objeto.Dibujar();
             }
+
+            GL.PopMatrix();
         }
     }
 }
